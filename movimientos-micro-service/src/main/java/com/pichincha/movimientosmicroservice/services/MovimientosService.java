@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
+import com.pichincha.movimientosmicroservice.models.Cuenta;
 import com.pichincha.movimientosmicroservice.models.Movimiento;
 import com.pichincha.movimientosmicroservice.repositories.MovimientosRepository;
 
@@ -16,6 +18,8 @@ public class MovimientosService {
 
     @Autowired
     private final MovimientosRepository repo;
+    @Autowired
+    RestTemplate restTemplate;
 
     public List<Movimiento> getAllMovimientos(){
         return repo.findAll();
@@ -31,13 +35,13 @@ public class MovimientosService {
         return nuevoMovimiento;
     }
 
-    public List<Movimiento> byCuentaId(Long id){
-        return repo.findByCuentaId(id);
-    }
-
     public void deleteMovimiento(Long id){
         repo.deleteById(id);
     }
 
+    public List<Cuenta> byCuentaId(Long id){
+        List<Cuenta> cuentas = restTemplate.getForObject("http://localhost:8011/cuenta/bycliente/" + id, List.class);
+        return cuentas;
+    }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pichincha.movimientosmicroservice.models.Cuenta;
 import com.pichincha.movimientosmicroservice.models.Movimiento;
 import com.pichincha.movimientosmicroservice.services.MovimientosService;
 
@@ -54,12 +55,12 @@ public class MovimientoController {
 
 
     @GetMapping("/bycuentas/{id}")
-    public ResponseEntity<List<Movimiento>> getByPersonId(@PathVariable("id") long id){
-        List<Movimiento> movimientos = service.byCuentaId(id);
-        if (movimientos.isEmpty()) {
+    public ResponseEntity<List<Cuenta>> getByPersonId(@PathVariable("id") long id){
+        List<Cuenta> cuentas = service.byCuentaId(id);
+        if (cuentas.isEmpty()) {
             return ResponseEntity.noContent().build();
         }else{
-            return ResponseEntity.ok(movimientos);
+            return ResponseEntity.ok(cuentas);
         }
     }
 

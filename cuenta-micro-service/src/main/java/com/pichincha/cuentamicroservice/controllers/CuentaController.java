@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pichincha.cuentamicroservice.models.Cliente;
 import com.pichincha.cuentamicroservice.models.Cuenta;
 import com.pichincha.cuentamicroservice.services.CuentaService;
 
@@ -63,12 +64,12 @@ public class CuentaController {
     }
 
     @GetMapping("/bycliente/{id}")
-    public ResponseEntity<List<Cuenta>> getByPersonId(@PathVariable("id") long id){
-        List<Cuenta> cuentas = service.byClienteId(id);
-        if (cuentas.isEmpty()) {
+    public ResponseEntity<List<Cliente>> getByPersonId(@PathVariable("id") long id){
+        List<Cliente> clientes = service.byClienteId(id);
+        if (clientes.isEmpty()) {
             return ResponseEntity.noContent().build();
         }else{
-            return ResponseEntity.ok(cuentas);
+            return ResponseEntity.ok(clientes);
         }
     }
 

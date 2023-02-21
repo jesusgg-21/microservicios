@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.pichincha.cuentamicroservice.models.Cliente;
 import com.pichincha.cuentamicroservice.models.Cuenta;
 import com.pichincha.cuentamicroservice.repositories.CuentaRepository;
 
@@ -33,8 +34,8 @@ public class CuentaService {
         return nuevaCuenta;
     }
 
-    public List<Cuenta> byClienteId(Long id){
-        List<Cuenta> cuentas = restTemplate.getForObject("http://localhost:8011/cliente/byperson/" + id, List.class);
+    public List<Cliente> byClienteId(Long id){
+        List<Cliente> cuentas = restTemplate.getForObject("http://localhost:8011/cliente/byperson/" + id, List.class);
         return cuentas;
     }
 
