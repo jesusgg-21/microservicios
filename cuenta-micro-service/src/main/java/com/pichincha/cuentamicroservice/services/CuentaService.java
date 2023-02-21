@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.pichincha.cuentamicroservice.models.Cuenta;
 import com.pichincha.cuentamicroservice.repositories.CuentaRepository;
@@ -16,6 +17,8 @@ public class CuentaService {
 
     @Autowired
     private final CuentaRepository repo;
+    @Autowired
+    RestTemplate restTemplate;
 
     public List<Cuenta> getAllCuentas(){
         return repo.findAll();
@@ -28,6 +31,11 @@ public class CuentaService {
     public Cuenta save(Cuenta cuenta){
         Cuenta nuevaCuenta = repo.save(cuenta);
         return nuevaCuenta;
+    }
+
+    public List<Cuenta> byClienteId(Long id){
+        List<Cuenta> cuentas = restTemplate.getForObject("http://localhost:8011/cliente/byperson/" + id, List.class);
+        return cuentas;
     }
 
     public void deleteCuenta(Long id){

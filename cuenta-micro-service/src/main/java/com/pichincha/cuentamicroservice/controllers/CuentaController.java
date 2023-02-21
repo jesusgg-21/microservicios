@@ -62,4 +62,14 @@ public class CuentaController {
         }
     }
 
+    @GetMapping("/bycliente/{id}")
+    public ResponseEntity<List<Cuenta>> getByPersonId(@PathVariable("id") long id){
+        List<Cuenta> cuentas = service.byClienteId(id);
+        if (cuentas.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.ok(cuentas);
+        }
+    }
+
 }
