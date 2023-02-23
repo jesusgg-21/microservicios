@@ -32,6 +32,11 @@ export class CuentasComponent {
     ){}
 
   ngOnInit(): void {
+    this.llenarTabla()
+    
+  }
+
+  llenarTabla(){
     try{
       this.serviceCue.getAllCuenta().subscribe(cue => {
         this.cuentas = cue
@@ -52,7 +57,6 @@ export class CuentasComponent {
     }catch(error){
       console.error(error)
     }
-    
   }
 
   verForm(): void{
@@ -81,8 +85,8 @@ export class CuentasComponent {
     }
 
     this.serviceCue.saveCuenta(newCuenta).subscribe( result => {
-      if (result) {
-        window.location.reload()
+      if (result.cuentaId != null) {
+        this.llenarTabla()
       }
     })
   }
