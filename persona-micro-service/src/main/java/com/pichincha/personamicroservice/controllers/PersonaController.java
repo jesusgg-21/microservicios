@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.pichincha.personamicroservice.services.PersonaService;
 import lombok.AllArgsConstructor;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/persona")
 @AllArgsConstructor
 public class PersonaController {
@@ -26,6 +28,7 @@ public class PersonaController {
     @Autowired
     private final PersonaService service;
 
+    @CrossOrigin("*")
     @GetMapping("/all")
     public ResponseEntity<List<Persona>> getAll(){
         List<Persona> personas = service.getAllPersonas();
@@ -36,6 +39,7 @@ public class PersonaController {
         }
     }
 
+    @CrossOrigin("*")
     @GetMapping("/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") long id){
         Persona persona = service.getPersonaById(id);
@@ -46,6 +50,7 @@ public class PersonaController {
         }*/
     }
 
+    @CrossOrigin("*")
     @PostMapping()
     public ResponseEntity<Persona> save(@RequestBody Persona persona){
         Persona npersona = service.save(persona);
@@ -53,6 +58,7 @@ public class PersonaController {
 
     }
 
+    @CrossOrigin("*")
     @GetMapping("/usuarios/{id}")
     public ResponseEntity<List<Cliente>> getUsuarios(@PathVariable("id") long id){
         Persona persona = service.getPersonaById(id);
@@ -64,6 +70,7 @@ public class PersonaController {
         }
     }
 
+    @CrossOrigin("*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Persona> deletePersona(@PathVariable("id") long id) {
         try {

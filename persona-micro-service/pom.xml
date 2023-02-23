@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.pichincha</groupId>
-	<artifactId>persona-micro-service</artifactId>
+	<artifactId>persona-ms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>persona-micro-service</name>
+	<name>persona-ms</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>

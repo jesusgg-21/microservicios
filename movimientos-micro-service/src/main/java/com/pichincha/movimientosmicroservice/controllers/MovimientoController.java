@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import com.pichincha.movimientosmicroservice.services.MovimientosService;
 import lombok.AllArgsConstructor;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/movimiento")
 @AllArgsConstructor
 public class MovimientoController {
@@ -26,6 +28,7 @@ public class MovimientoController {
     @Autowired
     private final MovimientosService service;
 
+    @CrossOrigin("*")
     @GetMapping("/all")
     public ResponseEntity<List<Movimiento>> getAll(){
         List<Movimiento> movimientos = service.getAllMovimientos();
@@ -36,6 +39,7 @@ public class MovimientoController {
         }
     }
 
+    @CrossOrigin("*")
     @GetMapping("/{id}")
     public ResponseEntity<Movimiento> getById(@PathVariable("id") long id){
         Movimiento movimiento = service.getMovimientoById(id);
@@ -46,6 +50,7 @@ public class MovimientoController {
         }
     }
 
+    @CrossOrigin("*")
     @PostMapping()
     public ResponseEntity<Movimiento> save(@RequestBody Movimiento movimiento){
         Movimiento nmovimiento = service.save(movimiento);
@@ -54,6 +59,7 @@ public class MovimientoController {
     }
 
 
+    @CrossOrigin("*")
     @GetMapping("/bycuentas/{id}")
     public ResponseEntity<List<Cuenta>> getByPersonId(@PathVariable("id") long id){
         List<Cuenta> cuentas = service.byCuentaId(id);
@@ -65,6 +71,7 @@ public class MovimientoController {
     }
 
 
+    @CrossOrigin("*")
     @DeleteMapping("/{id}")
     public ResponseEntity<Movimiento> deletePersona(@PathVariable("id") long id) {
         try {

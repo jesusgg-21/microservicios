@@ -20,7 +20,7 @@ public class Movimiento {
     private Long movimientoId;
     private Date fecha;
     private String tipoMovimiento;
-    private Float saldoInicial;
+    private Float saldo;
     private Boolean estado;
     
     private Long cuentaId;
